@@ -16,10 +16,17 @@ namespace ariel
         Fraction(); // default constructor for 0/1
         Fraction(float num);    // make float as fraction a/b form
         Fraction(int numerator, int denominator);   // fraction constructor
+        
+        /* copy constructor makes shallow copy of object copies the variables of the original object to a new one */
         Fraction(const Fraction& other);    // copy constructor
+        
+        /* we use move construtor to transfer resources (memory) from temp object to new object without copying the data
+        improving performance and reducing memory usage*/
         Fraction(Fraction&& other) noexcept;     // move constructor
         
+        /* destructor to ensure any dynamically allocated resources(memory) used is properly freed when an object is destroyed*/
         ~Fraction() = default;  // destructor
+
 
         int getNumerator() const;
         int getDenominator() const;
@@ -47,8 +54,7 @@ namespace ariel
         Fraction& operator=(Fraction&& other) noexcept;
 
         // BOOL FRACTION FRACTION OPERATIONS
-        bool operator==(const Fraction& other) const;
-        bool operator!=(const Fraction& other) const;
+        bool operator==(const Fraction& other) const;       // fraction fraction
         bool operator>(const Fraction& other) const;
         bool operator<(const Fraction& other) const;
         bool operator>=(const Fraction& other) const;
@@ -56,7 +62,6 @@ namespace ariel
 
         // BOOL FLOAT FRACTION OPERATIONS
         friend bool operator ==(const float& other, const Fraction& frac);
-        friend bool operator !=(const float& other, const Fraction& frac);
         friend bool operator >(const float& other, const Fraction& frac);
         friend bool operator >=(const float& other, const Fraction& frac);
         friend bool operator <=(const float& other, const Fraction& frac);
@@ -64,13 +69,10 @@ namespace ariel
         
         // BOOL FRACTION FLOAT OPERATIONS
         friend bool operator ==(const Fraction& frac, const float& other);
-        friend bool operator !=(const Fraction& frac, const float& other);
         friend bool operator >(const Fraction& frac, const float& other);
         friend bool operator >=(const Fraction& frac, const float& other);
         friend bool operator <(const Fraction& frac, const float& other);
         friend bool operator <=(const Fraction& frac, const float& other);
-
-
 
         // INC , DEC OPERATIONS
         Fraction& operator++();
